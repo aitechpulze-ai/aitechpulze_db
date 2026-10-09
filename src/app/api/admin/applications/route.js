@@ -1,0 +1,9 @@
+import { NextResponse } from "next/server";
+import { requireRole } from "@/lib/auth";
+import { supabase } from "@/lib/supabase";
+
+export async function GET() {
+  if (!(await requireRole("ADMIN"))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { data: apps } = await supabase.from("InternshipApplication").select("*").order("createdAt", { ascending: false });
+  return NextResponse.json(apps || []);
+}
