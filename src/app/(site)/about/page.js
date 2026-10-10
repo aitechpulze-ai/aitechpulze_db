@@ -63,31 +63,31 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-24 px-4 bg-[#0a0b14] border-t border-white/5">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/5 rounded-bl-full translate-x-1/2 -translate-y-1/2" />
-            <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <section className="py-20 px-4 bg-[#0a0b14] border-t border-white/5">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#00F0FF]/5 rounded-bl-full translate-x-1/2 -translate-y-1/2" />
+            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">Our Mission</h2>
-            <p className="text-[#8b93b0] leading-relaxed text-lg">
+            <h2 className="text-2xl font-bold text-white mb-3">Our Mission</h2>
+            <p className="text-[#8b93b0] leading-relaxed text-base">
               To empower businesses by building state-of-the-art software products that streamline operations, drive exponential growth, and create meaningful impact in a rapidly evolving digital landscape.
             </p>
           </motion.div>
 
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#7B2CBF]/5 rounded-bl-full translate-x-1/2 -translate-y-1/2" />
-            <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#7B2CBF]/5 rounded-bl-full translate-x-1/2 -translate-y-1/2" />
+            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">Our Vision</h2>
-            <p className="text-[#8b93b0] leading-relaxed text-lg">
+            <h2 className="text-2xl font-bold text-white mb-3">Our Vision</h2>
+            <p className="text-[#8b93b0] leading-relaxed text-base">
               To be the globally recognized vanguard of technological innovation, where ambitious ideas converge with flawless execution to shape the intelligent software of tomorrow.
             </p>
           </motion.div>
