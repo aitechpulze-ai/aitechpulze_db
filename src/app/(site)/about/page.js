@@ -116,6 +116,41 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Team Section */}
+      <section className="py-24 px-4 bg-[#0a0b14] border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
+            <h4 className="text-sm font-bold text-[#00F0FF] tracking-widest uppercase mb-4">OUR TEAM</h4>
+            <h2 className="text-4xl font-bold text-white">The Minds Behind The Code</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Dynamically imported data or hardcoded for now since they want to see it */}
+            [ 
+              { name: "Niranjan P", role: "Founder & CEO", photo: "/team/niranjan.webp" },
+              { name: "Vijaykumar", role: "CTO", photo: "/team/vijay.webp" },
+              { name: "Ranjeet", role: "AI/ML Engineer", photo: "/team/ranjeet.webp" },
+              { name: "Nehashree", role: "Intern", photo: "/team/neha.webp" },
+              { name: "Nishalini", role: "Intern", photo: "/team/nisha.webp" },
+              { name: "Ramani", role: "Intern", photo: "/team/ramani.webp" },
+              { name: "Rajesh", role: "Intern", photo: "/team/rajesh.webp" },
+              { name: "Sanjay Ram", role: "Intern", photo: "/team/sanjay.webp" },
+              { name: "Susmiha bavyaa", role: "Intern", photo: "/team/susmiha.webp" },
+              { name: "Rakesh", role: "Intern", photo: "/team/rakesh.webp" },
+              { name: "Sanjeal", role: "Intern", photo: "/team/sanjeal.webp" },
+              { name: "Sheik", role: "Intern", photo: "/team/sheik.webp" },
+              { name: "Varun", role: "Intern", photo: "/team/varun.webp" }
+            ].map((member, idx) => (
+              <motion.div key={idx} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 text-center hover:border-white/20 transition-all">
+                <img src={member.photo} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-2 border-[#00F0FF]/30" />
+                <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+                <p className="text-[#00F0FF] text-sm">{member.role}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 px-4 bg-gradient-to-b from-[#0a0b14] to-[#03040B] border-t border-white/5">
         <div className="max-w-4xl mx-auto text-center">
