@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { requireRole, generateTempPassword, hashPassword } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import { sendMail } from "@/lib/mail";
 import { mentorCredentialsMail } from "@/lib/templates";
 
@@ -13,7 +13,7 @@ const schema = z.object({
 
 export async function GET() {
   if (!(await requireRole("ADMIN"))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const { data: rawMentors } = await supabase.from("Mentor").select("*, user:User(name, email), students:Student(*)").order("id", { ascending: false });
+  const { data: rawMentors } = await supabaseAdmin.from("Mentor").select("*, user:User(name, email), students:Student(*)").order("id", { ascending: false });
   return NextResponse.json(rawMentors || []);
 }
 
@@ -24,7 +24,7 @@ export async function POST(req) {
   if (!parsed.success) return NextResponse.json({ error: "Invalid input" }, { status: 400 });
 
   const email = parsed.data.email.toLowerCase();
-  const { data: existing } = await supabase.from("User").select("*").eq("email", email).maybeSingle();
+  const { data: existing } = await supabaseAdmin.from("User").select("*").eq("email", email).maybeSingle();
   if (existing) {
     return NextResponse.json({ error: "A user with this email already exists" }, { status: 409 });
   }
@@ -32,12 +32,12 @@ export async function POST(req) {
   const tempPassword = generateTempPassword();
   const passwordHash = await hashPassword(tempPassword);
 
-  const { data: user, error: userError } = await supabase.from("User").insert({
+  const { data: user, error: userError } = await supabaseAdmin.from("User").insert({
     name: parsed.data.name, email, passwordHash, role: "MENTOR", mustChangePassword: true
   }).select().single();
   if (userError) return NextResponse.json({ error: "Failed to create user" }, { status: 500 });
 
-  const { error: mentorError } = await supabase.from("Mentor").insert({
+  const { error: mentorError } = await supabaseAdmin.from("Mentor").insert({
     userId: user.id, domain: parsed.data.domain
   });
   if (mentorError) return NextResponse.json({ error: "Failed to create mentor" }, { status: 500 });

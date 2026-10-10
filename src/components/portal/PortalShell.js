@@ -32,8 +32,9 @@ export default function PortalShell({ role, name, tabs, children }) {
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-black/40 border-b border-white/10 px-6 py-4 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-4">
           <Link href="/" className={`font-bold text-xl tracking-tight focus-visible:outline-none focus-visible:ring-2 ${accent.ring} rounded flex items-center gap-2`}>
-            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${accent.bg} ${accent.border} border ${accent.glow}`}>
-              <span className={`font-black text-sm ${accent.text}`}>AI</span>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${accent.bg} ${accent.border} border ${accent.glow} overflow-hidden`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/favicon.png" alt="AiTechPulze" className="w-5 h-5 object-contain" />
             </div>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
               AiTechPulze

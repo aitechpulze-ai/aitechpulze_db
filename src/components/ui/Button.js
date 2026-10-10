@@ -1,10 +1,10 @@
 "use client";
 
 const variants = {
-  primary: "bg-indigo-600 hover:bg-indigo-700 text-white focus-visible:ring-indigo-500",
-  secondary: "bg-white hover:bg-gray-50 text-indigo-600 border border-indigo-600 focus-visible:ring-indigo-500",
-  ghost: "hover:bg-gray-100 text-gray-700 focus-visible:ring-gray-400",
-  danger: "bg-red-600 hover:bg-red-700 text-white focus-visible:ring-red-500",
+  primary: "bg-[#00F0FF]/10 hover:bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50 hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] focus-visible:ring-[#00F0FF]/50",
+  secondary: "bg-transparent hover:bg-[#7B2CBF]/20 text-[#7B2CBF] border border-[#7B2CBF]/50 hover:shadow-[0_0_15px_rgba(123,44,191,0.4)] focus-visible:ring-[#7B2CBF]/50",
+  ghost: "bg-transparent hover:bg-white/10 text-white/70 hover:text-white border border-transparent hover:border-white/20 focus-visible:ring-white/30",
+  danger: "bg-[#FF003C]/10 hover:bg-[#FF003C]/20 text-[#FF003C] border border-[#FF003C]/50 hover:shadow-[0_0_15px_rgba(255,0,60,0.4)] focus-visible:ring-[#FF003C]/50",
 };
 
 const sizes = {

@@ -43,9 +43,9 @@ export default function AnimatedButton({
 
   const variants = {
     primary: "bg-[#7B2CBF] text-white hover:bg-[#5b3fd6] shadow-[0_0_20px_rgba(123,44,191,0.4)]",
-    secondary: "bg-white/5 border border-white/10 text-white hover:bg-white/10",
+    secondary: "bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20/5 border border-white/10 text-white hover:bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20/10",
     outline: "border-2 border-[#00F0FF] text-[#00F0FF] hover:bg-[#00F0FF]/10",
-    ghost: "text-white hover:bg-white/5",
+    ghost: "text-white hover:bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20/5",
   };
 
   return (
@@ -68,7 +68,7 @@ export default function AnimatedButton({
       {ripples.map((ripple) => (
         <motion.span
           key={ripple.id}
-          className="absolute rounded-full bg-white/30 pointer-events-none"
+          className="absolute rounded-full bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20/30 pointer-events-none"
           style={{
             left: ripple.x,
             top: ripple.y,

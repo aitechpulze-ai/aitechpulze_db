@@ -242,6 +242,10 @@ h1, h2, h3, h4, h5 {
   from { transform: translateX(-100%) skewX(-12deg); }
   to   { transform: translateX(300%) skewX(-12deg); }
 }
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
 
 .animate-in          { animation: fade-in-up 0.6s var(--ease-out) forwards; }
 .animate-in-delay-1  { animation: fade-in-up 0.6s var(--ease-out) 0.1s both; }
@@ -250,6 +254,7 @@ h1, h2, h3, h4, h5 {
 .animate-scale-in    { animation: scale-in  0.4s var(--ease-out) forwards; }
 .animate-blur-in     { animation: blur-in   0.8s var(--ease-out) forwards; }
 .animate-shimmer     { animation: shimmer 2.5s linear infinite; }
+.animate-scan        { animation: scan 2s linear infinite; }
 
 /* ── Misc ── */
 .hide-scrollbar                    { -ms-overflow-style:none; scrollbar-width:none; }

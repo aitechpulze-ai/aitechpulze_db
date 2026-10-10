@@ -98,8 +98,14 @@ export default function NewQuotePage() {
   const featuresCost = selectedFeatures.reduce((acc, curr) => acc + curr.price, 0);
   const totalCost = baseCost + featuresCost;
 
-  const handleNext = () => setStep((s) => Math.min(s + 1, 4));
-  const handlePrev = () => setStep((s) => Math.max(s - 1, 1));
+  const handleNext = () => {
+    setStep((s) => Math.min(s + 1, 4));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const handlePrev = () => {
+    setStep((s) => Math.max(s - 1, 1));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const toggleFeature = (featureId) => {
     setFormData((prev) => {

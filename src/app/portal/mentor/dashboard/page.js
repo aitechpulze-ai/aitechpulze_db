@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { requireRole } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import MentorDashboard from "@/components/portal/MentorDashboard";
 
 export const metadata = { title: "Mentor Portal | AiTechPulze", robots: { index: false } };
@@ -9,7 +9,7 @@ export default async function MentorDashboardPage() {
   const session = await requireRole("MENTOR");
   if (!session) redirect("/portal/login");
 
-  const { data: rawMentor } = await supabase.from("Mentor").select(`
+  const { data: rawMentor } = await supabaseAdmin.from("Mentor").select(`
     *,
     user:User(name, email),
     students:Student(

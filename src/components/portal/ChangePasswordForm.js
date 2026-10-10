@@ -50,9 +50,12 @@ export default function ChangePasswordForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm space-y-5"
+      className="relative bg-[#050B14]/60 backdrop-blur-xl rounded-2xl border border-[#00F0FF]/30 p-8 shadow-[0_0_20px_rgba(0,240,255,0.1)] space-y-5 group"
       aria-label="Change password form"
     >
+      {/* Scanning Laser Effect */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#00F0FF] to-transparent animate-scan opacity-50"></div>
+
       <Input id="cur" type="password" label="Current (temporary) password" value={form.currentPassword}
         onChange={(e) => setForm(f => ({ ...f, currentPassword: e.target.value }))} error={errors.currentPassword} autoComplete="current-password" />
       <Input id="new" type="password" label="New password (min 8 characters)" value={form.newPassword}
@@ -60,9 +63,14 @@ export default function ChangePasswordForm() {
       <Input id="conf" type="password" label="Confirm new password" value={form.confirm}
         onChange={(e) => setForm(f => ({ ...f, confirm: e.target.value }))} error={errors.confirm} autoComplete="new-password" />
       {serverError && (
-        <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{serverError}</p>
+        <div role="alert" className="flex items-center gap-2 text-xs font-mono text-[#FF003C] bg-[#FF003C]/10 border border-[#FF003C]/30 rounded-lg px-4 py-3">
+          <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {serverError}
+        </div>
       )}
-      <Button type="submit" loading={loading} className="w-full" size="lg">Set Password</Button>
+      <Button type="submit" loading={loading} className="w-full font-bold tracking-[0.2em] uppercase" size="lg">Set Password</Button>
     </form>
   );
 }

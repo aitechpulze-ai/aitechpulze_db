@@ -45,29 +45,29 @@ function ApplicationsTab({ applications: initial }) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Applications ({apps.length})</h2>
+      <h2 className="text-lg font-semibold text-white">Applications ({apps.length})</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm">
-          <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase">
+          <thead className="bg-white/5 text-left text-xs text-[#00F0FF]/70 uppercase">
             <tr>
               {["Name", "Email", "Domain", "Duration", "Status", "Resume", "Actions"].map((h) => (
                 <th key={h} className="px-3 py-2 whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 bg-white">
+          <tbody className="divide-y divide-white/10 bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20">
             {apps.map((app) => (
               <tr key={app.id}>
-                <td className="px-3 py-2 font-medium text-gray-900 whitespace-nowrap">{app.name}</td>
-                <td className="px-3 py-2 text-gray-500">{app.email}</td>
-                <td className="px-3 py-2 text-gray-500">{app.domain}</td>
-                <td className="px-3 py-2 text-gray-500">{app.duration === "DAYS_15" ? "15d" : "30d"}</td>
+                <td className="px-3 py-2 font-medium text-white whitespace-nowrap">{app.name}</td>
+                <td className="px-3 py-2 text-[#00F0FF]/70">{app.email}</td>
+                <td className="px-3 py-2 text-[#00F0FF]/70">{app.domain}</td>
+                <td className="px-3 py-2 text-[#00F0FF]/70">{app.duration === "DAYS_15" ? "15d" : "30d"}</td>
                 <td className="px-3 py-2">
                   <Badge colour={statusColour[app.status]}>{app.status}</Badge>
                 </td>
                 <td className="px-3 py-2">
                   <a href={`/api/admin/resume/${app.resumeUrl}`} target="_blank" rel="noopener noreferrer"
-                    className="text-indigo-600 hover:underline text-xs">View PDF</a>
+                    className="text-[#00F0FF] hover:underline text-xs">View PDF</a>
                 </td>
                 <td className="px-3 py-2">
                   <div className="flex gap-1 flex-wrap">
@@ -136,22 +136,22 @@ function StudentsTab({ students: initial, mentors }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4">
-        <h2 className="text-lg font-semibold text-gray-900">Students ({students.length})</h2>
+        <h2 className="text-lg font-semibold text-white">Students ({students.length})</h2>
         <Button size="sm" variant="secondary" onClick={exportCsv}>Export CSV</Button>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm">
-          <thead className="bg-gray-50 text-left text-xs text-gray-500 uppercase">
+          <thead className="bg-white/5 text-left text-xs text-[#00F0FF]/70 uppercase">
             <tr>{["Name", "Email", "Domain", "Mentor", "Certificate", "Actions"].map((h) => (
               <th key={h} className="px-3 py-2 whitespace-nowrap">{h}</th>
             ))}</tr>
           </thead>
-          <tbody className="divide-y divide-gray-100 bg-white">
+          <tbody className="divide-y divide-white/10 bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20">
             {students.map((s) => (
               <tr key={s.id}>
-                <td className="px-3 py-2 font-medium text-gray-900 whitespace-nowrap">{s.user.name}</td>
-                <td className="px-3 py-2 text-gray-500 text-xs">{s.user.email}</td>
-                <td className="px-3 py-2 text-gray-500">{s.domain}</td>
+                <td className="px-3 py-2 font-medium text-white whitespace-nowrap">{s.user.name}</td>
+                <td className="px-3 py-2 text-[#00F0FF]/70 text-xs">{s.user.email}</td>
+                <td className="px-3 py-2 text-[#00F0FF]/70">{s.domain}</td>
                 <td className="px-3 py-2">
                   <select className="text-xs border rounded px-1 py-0.5"
                     value={s.mentor?.id || ""}
@@ -163,7 +163,7 @@ function StudentsTab({ students: initial, mentors }) {
                 <td className="px-3 py-2">
                   {s.certificateId
                     ? <span className="text-xs font-mono text-green-600">{s.certificateId}</span>
-                    : <span className="text-xs text-gray-400">Not issued</span>}
+                    : <span className="text-xs text-[#00F0FF]/50">Not issued</span>}
                 </td>
                 <td className="px-3 py-2">
                   <div className="flex gap-1 flex-wrap">
@@ -214,7 +214,7 @@ function MentorsTab({ mentors: initial }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-4">
-        <h2 className="text-lg font-semibold text-gray-900">Mentors ({mentors.length})</h2>
+        <h2 className="text-lg font-semibold text-white">Mentors ({mentors.length})</h2>
         <Button size="sm" onClick={() => setShowCreate(true)}>Add Mentor</Button>
       </div>
 
@@ -230,9 +230,9 @@ function MentorsTab({ mentors: initial }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {mentors.map((m) => (
-          <div key={m.id} className="bg-white border border-gray-100 rounded-xl p-4">
-            <p className="font-medium text-gray-900">{m.user.name}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{m.user.email}</p>
+          <div key={m.id} className="bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20 border border-[#00F0FF]/20 rounded-xl p-4">
+            <p className="font-medium text-white">{m.user.name}</p>
+            <p className="text-xs text-[#00F0FF]/70 mt-0.5">{m.user.email}</p>
             <p className="text-xs text-blue-600 mt-1">{m.domain} · {m.students.length} students</p>
             <Button size="sm" variant="danger" className="mt-3" onClick={() => del(m.id)}>Delete</Button>
           </div>
@@ -257,23 +257,23 @@ function QuotesTab({ quotes: initial }) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Quote Requests ({quotes.length})</h2>
+      <h2 className="text-lg font-semibold text-white">Quote Requests ({quotes.length})</h2>
       <div className="space-y-3">
         {quotes.map((q) => (
-          <div key={q.id} className="bg-white border border-gray-100 rounded-xl p-5">
+          <div key={q.id} className="bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20 border border-[#00F0FF]/20 rounded-xl p-5">
             <div className="flex items-start justify-between gap-4 flex-wrap">
               <div>
-                <p className="font-medium text-gray-900">{q.name} · {q.projectType}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{q.email} {q.phone && `· ${q.phone}`}</p>
-                {q.company && <p className="text-xs text-gray-400">{q.company}</p>}
-                {q.budget && <p className="text-xs text-gray-400">Budget: {q.budget}</p>}
+                <p className="font-medium text-white">{q.name} · {q.projectType}</p>
+                <p className="text-xs text-[#00F0FF]/70 mt-0.5">{q.email} {q.phone && `· ${q.phone}`}</p>
+                {q.company && <p className="text-xs text-[#00F0FF]/50">{q.company}</p>}
+                {q.budget && <p className="text-xs text-[#00F0FF]/50">Budget: {q.budget}</p>}
               </div>
               <Select id={`qs-${q.id}`} value={q.status} onChange={(e) => updateStatus(q.id, e.target.value)} className="text-xs">
                 {["NEW", "CONTACTED", "WON", "LOST"].map((s) => <option key={s} value={s}>{s}</option>)}
               </Select>
             </div>
-            <p className="mt-3 text-sm text-gray-600 whitespace-pre-wrap">{q.message}</p>
-            <p className="mt-2 text-xs text-gray-400">{new Date(q.createdAt).toLocaleString("en-IN")}</p>
+            <p className="mt-3 text-sm text-gray-300 whitespace-pre-wrap">{q.message}</p>
+            <p className="mt-2 text-xs text-[#00F0FF]/50">{new Date(q.createdAt).toLocaleString("en-IN")}</p>
           </div>
         ))}
       </div>
@@ -294,19 +294,19 @@ function AnalyticsTab({ analytics }) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-lg font-semibold text-gray-900">Analytics</h2>
+      <h2 className="text-lg font-semibold text-white">Analytics</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {kpis.map((k) => (
-          <div key={k.label} className="bg-white rounded-xl border border-gray-100 p-4 text-center">
+          <div key={k.label} className="bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20 rounded-xl border border-[#00F0FF]/20 p-4 text-center">
             <p className="text-3xl font-bold text-blue-600">{k.value}</p>
-            <p className="text-xs text-gray-500 mt-1">{k.label}</p>
+            <p className="text-xs text-[#00F0FF]/70 mt-1">{k.label}</p>
           </div>
         ))}
       </div>
 
       {/* Simple SVG bar chart for application status */}
-      <div className="bg-white rounded-xl border border-gray-100 p-6">
-        <h3 className="text-sm font-semibold text-gray-700 mb-4">Application Status</h3>
+      <div className="bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20 rounded-xl border border-[#00F0FF]/20 p-6">
+        <h3 className="text-sm font-semibold text-gray-200 mb-4">Application Status</h3>
         <div className="space-y-3">
           {[
             { label: "Approved", count: analytics.approved, colour: "bg-green-400" },
@@ -314,8 +314,8 @@ function AnalyticsTab({ analytics }) {
             { label: "Rejected", count: analytics.total - analytics.approved - analytics.pending, colour: "bg-red-400" },
           ].map((bar) => (
             <div key={bar.label} className="flex items-center gap-3">
-              <span className="text-xs text-gray-500 w-16">{bar.label}</span>
-              <div className="flex-1 bg-gray-100 rounded-full h-3">
+              <span className="text-xs text-[#00F0FF]/70 w-16">{bar.label}</span>
+              <div className="flex-1 bg-white/10 rounded-full h-3">
                 <div
                   className={`${bar.colour} h-3 rounded-full`}
                   style={{ width: analytics.total > 0 ? `${(bar.count / analytics.total) * 100}%` : "0%" }}
@@ -325,7 +325,7 @@ function AnalyticsTab({ analytics }) {
                   aria-label={`${bar.label}: ${bar.count}`}
                 />
               </div>
-              <span className="text-xs text-gray-500 w-6">{bar.count}</span>
+              <span className="text-xs text-[#00F0FF]/70 w-6">{bar.count}</span>
             </div>
           ))}
         </div>

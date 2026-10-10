@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import {
   getSession, hashPassword, verifyPassword, signSession, COOKIE, cookieOptions,
 } from "@/lib/auth";
@@ -19,7 +19,7 @@ export async function POST(req) {
     return NextResponse.json({ error: "New password must be at least 8 characters" }, { status: 400 });
   }
 
-  const { data: user } = await supabase.from("User").select("*").eq("id", session.sub).maybeSingle();
+  const { data: user } = await supabaseAdmin.from("User").select("*").eq("id", session.sub).maybeSingle();
   if (!user || !(await verifyPassword(parsed.data.currentPassword, user.passwordHash))) {
     return NextResponse.json({ error: "Current password is incorrect" }, { status: 400 });
   }
@@ -27,7 +27,7 @@ export async function POST(req) {
     return NextResponse.json({ error: "Choose a different password" }, { status: 400 });
   }
 
-  await supabase.from("User").update({
+  await supabaseAdmin.from("User").update({
     passwordHash: await hashPassword(parsed.data.newPassword), mustChangePassword: false
   }).eq("id", user.id);
 

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { requireRole } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import StudentDashboard from "@/components/portal/StudentDashboard";
 
 export const metadata = { title: "Student Portal | AiTechPulze", robots: { index: false } };
@@ -9,7 +9,7 @@ export default async function StudentDashboardPage() {
   const session = await requireRole("STUDENT");
   if (!session) redirect("/portal/login");
 
-  const { data: rawStudent } = await supabase.from("Student").select(`
+  const { data: rawStudent } = await supabaseAdmin.from("Student").select(`
     *,
     user:User(name, email),
     mentor:Mentor(meetUrl, meetLive, user:User(name)),
@@ -26,7 +26,7 @@ export default async function StudentDashboardPage() {
   };
   if (student.mentor) student.mentor.user = Array.isArray(student.mentor.user) ? student.mentor.user[0] : student.mentor.user;
 
-  let query = supabase.from("Assignment").select("*, submissions:Submission(*)").order("createdAt", { ascending: false });
+  let query = supabaseAdmin.from("Assignment").select("*, submissions:Submission(*)").order("createdAt", { ascending: false });
   if (student.mentorId) {
     query = query.or(`studentId.eq.${student.id},and(studentId.is.null,mentorId.eq.${student.mentorId})`);
   } else {

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { requireRole } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import AdminDashboard from "@/components/portal/AdminDashboard";
 
 export const metadata = { title: "Admin Portal | AiTechPulze", robots: { index: false } };
@@ -10,16 +10,16 @@ export default async function AdminDashboardPage() {
   if (!session) redirect("/portal/login");
 
   const [applicationsRes, studentsRes, mentorsRes, quotesRes, totalApp, approvedApp, pendingApp, certsCount, mentorCount, quoteCount] = await Promise.all([
-    supabase.from("InternshipApplication").select("*").order("createdAt", { ascending: false }),
-    supabase.from("Student").select("*, user:User(name, email), mentor:Mentor(*, user:User(name))").order("id", { ascending: false }),
-    supabase.from("Mentor").select("*, user:User(name, email), students:Student(*)").order("id", { ascending: false }),
-    supabase.from("Quote").select("*").order("createdAt", { ascending: false }),
-    supabase.from("InternshipApplication").select("*", { count: "exact", head: true }),
-    supabase.from("InternshipApplication").select("*", { count: "exact", head: true }).eq("status", "APPROVED"),
-    supabase.from("InternshipApplication").select("*", { count: "exact", head: true }).eq("status", "PENDING"),
-    supabase.from("Student").select("*", { count: "exact", head: true }).not("certificateId", "is", null),
-    supabase.from("Mentor").select("*", { count: "exact", head: true }),
-    supabase.from("Quote").select("*", { count: "exact", head: true }),
+    supabaseAdmin.from("InternshipApplication").select("*").order("createdAt", { ascending: false }),
+    supabaseAdmin.from("Student").select("*, user:User(name, email), mentor:Mentor(*, user:User(name))").order("id", { ascending: false }),
+    supabaseAdmin.from("Mentor").select("*, user:User(name, email), students:Student(*)").order("id", { ascending: false }),
+    supabaseAdmin.from("Quote").select("*").order("createdAt", { ascending: false }),
+    supabaseAdmin.from("InternshipApplication").select("*", { count: "exact", head: true }),
+    supabaseAdmin.from("InternshipApplication").select("*", { count: "exact", head: true }).eq("status", "APPROVED"),
+    supabaseAdmin.from("InternshipApplication").select("*", { count: "exact", head: true }).eq("status", "PENDING"),
+    supabaseAdmin.from("Student").select("*", { count: "exact", head: true }).not("certificateId", "is", null),
+    supabaseAdmin.from("Mentor").select("*", { count: "exact", head: true }),
+    supabaseAdmin.from("Quote").select("*", { count: "exact", head: true }),
   ]);
 
   const applications = applicationsRes.data || [];

@@ -22,8 +22,8 @@ function StudentsTab({ mentor }) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">My Students ({mentor.students.length})</h2>
-      {mentor.students.length === 0 && <p className="text-gray-500 text-sm">No students assigned yet.</p>}
+      <h2 className="text-lg font-semibold text-white">My Students ({mentor.students.length})</h2>
+      {mentor.students.length === 0 && <p className="text-[#00F0FF]/70 text-sm">No students assigned yet.</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {mentor.students.map((s) => {
           const maxDays = s.duration === "DAYS_15" ? 15 : 30;
@@ -32,10 +32,10 @@ function StudentsTab({ mentor }) {
             <button
               key={s.id}
               onClick={() => setSelected(s)}
-              className="text-left bg-white border border-gray-100 rounded-xl p-4 hover:border-emerald-200 hover:shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="text-left bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20 border border-[#00F0FF]/20 rounded-xl p-4 hover:border-emerald-200 hover:shadow-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
-              <p className="font-medium text-gray-900">{s.user.name}</p>
-              <p className="text-xs text-gray-500 mt-0.5">{s.domain} · {maxDays} days</p>
+              <p className="font-medium text-white">{s.user.name}</p>
+              <p className="text-xs text-[#00F0FF]/70 mt-0.5">{s.domain} · {maxDays} days</p>
               <p className="text-xs text-emerald-600 mt-1">Attendance: {present}/{maxDays}</p>
             </button>
           );
@@ -62,19 +62,19 @@ function StudentDetail({ student, onMark }) {
 
   return (
     <div className="space-y-4 text-sm">
-      <p className="text-gray-500">{student.user.email} · {student.domain}</p>
+      <p className="text-[#00F0FF]/70">{student.user.email} · {student.domain}</p>
       <div>
-        <p className="font-medium text-gray-700 mb-2">Attendance</p>
+        <p className="font-medium text-gray-200 mb-2">Attendance</p>
         <div className="grid grid-cols-5 gap-1.5">
           {Array.from({ length: maxDays }, (_, i) => i + 1).map((day) => (
             <div key={day} className="border rounded p-1 text-center">
-              <p className="text-xs text-gray-400">D{day}</p>
+              <p className="text-xs text-[#00F0FF]/50">D{day}</p>
               <div className="flex gap-0.5 mt-0.5 justify-center">
                 <button onClick={() => mark(day, "PRESENT")}
-                  className={`text-xs px-1 py-0.5 rounded ${map[day] === "PRESENT" ? "bg-green-500 text-white" : "bg-gray-100 text-gray-500"} hover:bg-green-400 hover:text-white transition`}
+                  className={`text-xs px-1 py-0.5 rounded ${map[day] === "PRESENT" ? "bg-green-500 text-white" : "bg-white/10 text-[#00F0FF]/70"} hover:bg-green-400 hover:text-white transition`}
                   aria-label={`Day ${day} present`}>P</button>
                 <button onClick={() => mark(day, "ABSENT")}
-                  className={`text-xs px-1 py-0.5 rounded ${map[day] === "ABSENT" ? "bg-red-500 text-white" : "bg-gray-100 text-gray-500"} hover:bg-red-400 hover:text-white transition`}
+                  className={`text-xs px-1 py-0.5 rounded ${map[day] === "ABSENT" ? "bg-red-500 text-white" : "bg-white/10 text-[#00F0FF]/70"} hover:bg-red-400 hover:text-white transition`}
                   aria-label={`Day ${day} absent`}>A</button>
               </div>
             </div>
@@ -82,9 +82,9 @@ function StudentDetail({ student, onMark }) {
         </div>
       </div>
       <div>
-        <p className="font-medium text-gray-700 mb-2">Submissions</p>
+        <p className="font-medium text-gray-200 mb-2">Submissions</p>
         {student.submissions.length === 0 ? (
-          <p className="text-gray-400">No submissions yet.</p>
+          <p className="text-[#00F0FF]/50">No submissions yet.</p>
         ) : (
           <ul className="space-y-1 list-none">
             {student.submissions.map((sub) => (
@@ -121,7 +121,7 @@ function AttendanceTab({ mentor }) {
 
   return (
     <div className="max-w-md space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Mark Attendance</h2>
+      <h2 className="text-lg font-semibold text-white">Mark Attendance</h2>
       <Select id="att-student" label="Student" value={selectedStudent} onChange={(e) => setSelectedStudent(e.target.value)}>
         {mentor.students.map((s) => <option key={s.id} value={s.id}>{s.user.name}</option>)}
       </Select>
@@ -154,10 +154,15 @@ function MeetTab({ mentor }) {
 
   return (
     <div className="max-w-md space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Google Meet</h2>
+      <h2 className="text-lg font-semibold text-white">Google Meet</h2>
       <Input id="meet-url" label="Google Meet URL" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://meet.google.com/..." />
-      <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-        <input type="checkbox" checked={live} onChange={(e) => setLive(e.target.checked)} className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" />
+      <label className="flex items-center gap-2 text-sm text-gray-200 cursor-pointer">
+        <input 
+          type="checkbox" 
+          checked={live} 
+          onChange={(e) => setLive(e.target.checked)} 
+          className="w-4 h-4 rounded border-[#00F0FF]/40 text-[#00F0FF] focus:ring-[#00F0FF] focus:ring-offset-0 bg-[#050B14]/50" 
+        />
         Mark as Live (students will see a &quot;Join Meet&quot; button)
       </label>
       <Button onClick={save}>Save</Button>
@@ -190,7 +195,7 @@ function CreateAssignmentTab({ mentor }) {
 
   return (
     <div className="max-w-lg space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Create Assignment</h2>
+      <h2 className="text-lg font-semibold text-white">Create Assignment</h2>
       <Input id="a-title" label="Title *" value={form.title} onChange={(e) => setForm(f => ({ ...f, title: e.target.value }))} />
       <Textarea id="a-desc" label="Description *" value={form.description} onChange={(e) => setForm(f => ({ ...f, description: e.target.value }))} />
       <Input id="a-due" type="date" label="Due date *" value={form.dueDate} onChange={(e) => setForm(f => ({ ...f, dueDate: e.target.value }))} />
@@ -199,7 +204,7 @@ function CreateAssignmentTab({ mentor }) {
         {mentor.students.map((s) => <option key={s.id} value={s.id}>{s.user.name}</option>)}
       </Select>
       <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-gray-700">Attachment (PDF, optional)</label>
+        <label className="text-sm font-medium text-gray-200">Attachment (PDF, optional)</label>
         <input type="file" accept=".pdf" onChange={(e) => setFile(e.target.files?.[0] || null)}
           className="text-sm file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-emerald-50 file:text-emerald-700" />
       </div>
@@ -230,21 +235,21 @@ function SubmissionsTab({ mentor }) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-semibold text-gray-900">Submissions</h2>
-      {submissions.length === 0 && <p className="text-gray-500 text-sm">No submissions yet.</p>}
+      <h2 className="text-lg font-semibold text-white">Submissions</h2>
+      {submissions.length === 0 && <p className="text-[#00F0FF]/70 text-sm">No submissions yet.</p>}
       {submissions.map((sub) => (
-        <div key={sub.id} className="bg-white border border-gray-100 rounded-xl p-5 space-y-3">
+        <div key={sub.id} className="bg-[#050B14]/80 backdrop-blur-xl border border-[#00F0FF]/20 border border-[#00F0FF]/20 rounded-xl p-5 space-y-3">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="font-medium text-gray-900">{sub.assignmentTitle}</p>
-              <p className="text-sm text-gray-500">{sub.student?.user?.name}</p>
+              <p className="font-medium text-white">{sub.assignmentTitle}</p>
+              <p className="text-sm text-[#00F0FF]/70">{sub.student?.user?.name}</p>
             </div>
             <Badge colour={sub.status === "ACCEPTED" ? "green" : sub.status === "CHANGES_REQUESTED" ? "yellow" : "indigo"}>
               {sub.status}
             </Badge>
           </div>
           <a href={`/api/mentor/submissions/${sub.id}/file`} target="_blank" rel="noopener noreferrer"
-            className="text-sm text-indigo-600 hover:underline">View submission</a>
+            className="text-sm text-[#00F0FF] hover:underline">View submission</a>
           <Textarea id={`fb-${sub.id}`} label="Feedback (optional)" rows={2}
             value={feedback[sub.id] || sub.feedback || ""}
             onChange={(e) => setFeedback((f) => ({ ...f, [sub.id]: e.target.value }))} />

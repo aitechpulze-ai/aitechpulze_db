@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import { verifyPassword, signSession, COOKIE, cookieOptions } from "@/lib/auth";
 import { rateLimit, clientIp } from "@/lib/rateLimit";
 
@@ -15,7 +15,7 @@ export async function POST(req) {
     return NextResponse.json({ error: "Too many attempts. Try again in 15 minutes." }, { status: 429 });
   }
 
-  const { data: user } = await supabase.from("User").select("*").eq("email", email).maybeSingle();
+  const { data: user } = await supabaseAdmin.from("User").select("*").eq("email", email).maybeSingle();
   const ok = user && (await verifyPassword(parsed.data.password, user.passwordHash));
   if (!ok) return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
 
