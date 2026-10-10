@@ -8,7 +8,7 @@ export const leadership = [
   {
     name: "Vijaykumar",
     role: "CTO",
-    photo: "/team/vijaykumar.webp",
+    photo: "/team/vijay.webp",
     bio: "TODO",
   },
   {
@@ -19,13 +19,15 @@ export const leadership = [
   },
 ];
 
-// Smaller grid. Roles unknown, so leave as "Intern" (do not invent roles).
 export const interns = [
-  "Nehashree",
-  "Nishalini",
-  "Ramani",
-  "Rajesh",
-  "Sanjay Ram",
-  "Susmiha bavyaa",
-  // TODO: add the remaining names (13 team members in total)
-].map((name) => ({ name, role: "Intern", photo: "" }));
+  { name: "Nehashree", role: "Intern", photo: "/team/neha.webp" },
+  { name: "Nishalini", role: "Intern", photo: "/team/nisha.webp" },
+  { name: "Ramani", role: "Intern", photo: "/team/ramani.webp" },
+  { name: "Rajesh", role: "Intern", photo: "/team/rajesh.webp" },
+  { name: "Sanjay Ram", role: "Intern", photo: "/team/sanjay.webp" },
+  { name: "Susmiha bavyaa", role: "Intern", photo: "/team/susmiha.webp" },
+  { name: "Rakesh", role: "Intern", photo: "/team/rakesh.webp" },
+  { name: "Sanjeal", role: "Intern", photo: "/team/sanjeal.webp" },
+  { name: "Sheik", role: "Intern", photo: "/team/sheik.webp" },
+  { name: "Varun", role: "Intern", photo: "/team/varun.webp" },
+];
