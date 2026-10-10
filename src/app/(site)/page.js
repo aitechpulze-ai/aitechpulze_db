@@ -54,7 +54,7 @@ export default function HomePage() {
               className="flex items-center gap-3"
             >
               <div className="w-16 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center p-1">
-                <Image src="/images/msme_logo.webp" alt="MSME Logo" width={80} height={40} className="object-contain" />
+                <Image src="/images/msme_logo.webp" alt="MSME Logo" width={80} height={40} className="object-contain" priority />
               </div>
               <div>
                 <div className="text-xs text-[#8b93b0] uppercase tracking-wider">MSME Registered</div>
@@ -562,14 +562,14 @@ export default function HomePage() {
       <section className="py-20 md:py-28 px-6">
         <div className="mx-auto w-full max-w-3xl">
           <h2 className="text-3xl font-bold text-white text-center mb-10 tracking-tight font-[family-name:var(--font-grotesk)]">Frequently Asked Questions</h2>
-          <div className="space-y-4">
+          <dl className="space-y-4">
             {faq.map((item) => (
               <SpotlightCard key={item.q}>
                 <dt className="font-semibold text-white">{item.q}</dt>
                 <dd className="mt-2 text-sm text-[#8b93b0]">{item.a}</dd>
               </SpotlightCard>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 

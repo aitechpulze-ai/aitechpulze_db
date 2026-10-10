@@ -21,6 +21,14 @@ const grotesk = Space_Grotesk({
   fallback: ['system-ui', 'arial'],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#03040b",
+};
+
 export const metadata = buildMetadata({
   keywords: [
     // Primary Core Services
@@ -71,7 +79,7 @@ export const metadata = buildMetadata({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${grotesk.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-hidden w-full max-w-[100vw]">
         <Preloader />
         <ParticleField />
         <WebVitalsReporter />
