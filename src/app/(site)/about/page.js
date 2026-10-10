@@ -126,7 +126,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Dynamically imported data or hardcoded for now since they want to see it */}
-            [ 
+            {[ 
               { name: "Niranjan P", role: "Founder & CEO", photo: "/team/niranjan.webp" },
               { name: "Vijaykumar", role: "CTO", photo: "/team/vijay.webp" },
               { name: "Ranjeet", role: "AI/ML Engineer", photo: "/team/ranjeet.webp" },
