@@ -3,26 +3,28 @@ import { esc } from "./mail";
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://aitechpulze.com";
 
 const layout = (title, body) => `
-<div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;max-width:600px;margin:auto;background-color:#ffffff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1)">
-  <div style="background-color:#4f46e5;padding:24px;text-align:center;">
-    <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:bold;letter-spacing:1px">AiTechPulze</h1>
+<div style="font-family:'Space Grotesk', 'Segoe UI', Tahoma, Geneva, sans-serif; max-width:600px; margin:auto; background-color:#050505; border:1px solid #00f0ff; border-radius:16px; overflow:hidden; box-shadow:0 0 15px rgba(0, 240, 255, 0.2);">
+  <div style="background: linear-gradient(90deg, #0f0c29 0%, #302b63 50%, #24243e 100%); padding:30px; text-align:center; border-bottom:1px solid rgba(0,240,255,0.3);">
+    <h1 style="margin:0; color:#00f0ff; font-size:28px; font-weight:800; letter-spacing:2px; text-transform:uppercase; text-shadow:0 0 8px rgba(0,240,255,0.5);">
+      AiTech<span style="color:#ff003c;">Pulze</span>
+    </h1>
   </div>
-  <div style="padding:32px;color:#374151;line-height:1.6">
-    <h2 style="margin:0 0 20px;color:#111827;font-size:20px">${title}</h2>
+  <div style="padding:32px; color:#e0e0e0; line-height:1.6; background-image: radial-gradient(circle at center, #111 0%, #000 100%);">
+    <h2 style="margin:0 0 20px; color:#ffffff; font-size:22px; border-left:4px solid #00f0ff; padding-left:12px;">${title}</h2>
     ${body}
   </div>
-  <div style="background-color:#f9fafb;padding:24px;text-align:center;border-top:1px solid #e5e7eb">
-    <p style="margin:0 0 8px;font-size:14px;color:#4b5563;font-weight:600">AiTechPulze Solutions</p>
-    <p style="margin:0 0 8px;font-size:12px;color:#6b7280">Empowering the future with Artificial Intelligence.</p>
-    <p style="margin:0;font-size:12px;color:#9ca3af">
-      <a href="mailto:info@aitechpulze.com" style="color:#4f46e5;text-decoration:none">info@aitechpulze.com</a> &nbsp;|&nbsp; 
-      <a href="tel:+919585776088" style="color:#4f46e5;text-decoration:none">+91 95857 76088</a>
+  <div style="background-color:#0a0a0a; padding:24px; text-align:center; border-top:1px solid rgba(255,0,60,0.3);">
+    <p style="margin:0 0 8px; font-size:14px; color:#00f0ff; font-weight:600; letter-spacing:1px;">AITECHPULZE SOLUTIONS</p>
+    <p style="margin:0 0 8px; font-size:12px; color:#888;">Empowering the future with next-gen Artificial Intelligence.</p>
+    <p style="margin:0; font-size:12px; color:#555;">
+      <a href="mailto:info@aitechpulze.com" style="color:#ff003c; text-decoration:none; font-weight:bold;">info@aitechpulze.com</a> &nbsp;|&nbsp; 
+      <a href="tel:+919585776088" style="color:#ff003c; text-decoration:none; font-weight:bold;">+91 95857 76088</a>
     </p>
   </div>
 </div>`;
 
 const row = (k, v) =>
-  `<tr><td style="padding:8px 16px 8px 0;color:#6b7280;border-bottom:1px solid #f3f4f6;font-size:14px">${k}</td><td style="padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px;color:#111827"><b>${esc(v || "-")}</b></td></tr>`;
+  `<tr><td style="padding:8px 16px 8px 0; color:#a0a0a0; border-bottom:1px solid rgba(0,240,255,0.1); font-size:14px;">${k}</td><td style="padding:8px 0; border-bottom:1px solid rgba(0,240,255,0.1); font-size:14px; color:#ffffff;"><b>${esc(v || "-")}</b></td></tr>`;
 
 export const quoteClientMail = (d) => ({
   subject: "We received your request | AiTechPulze",

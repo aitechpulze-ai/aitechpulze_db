@@ -16,8 +16,8 @@ export function buildMetadata({
 }) {
   const url = `${SITE.url}${path}`;
   
-  // Generate dynamic OG image URL if no custom image provided
-  const ogImage = image || `${SITE.url}/og?title=${encodeURIComponent(title || SITE.name)}&description=${encodeURIComponent(description.substring(0, 160))}&type=${imageType}`;
+  // Use provided image or fallback to the site's logo for social previews
+  const ogImage = image || `${SITE.url}/icon.png`;
   
   return {
     metadataBase: new URL(SITE.url),

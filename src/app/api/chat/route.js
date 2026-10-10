@@ -65,10 +65,44 @@ If the user asks about starting a project, getting a quote, business services, o
 
     return NextResponse.json({ reply: response.text });
   } catch (error) {
-    console.error("Gemini API Error:", error);
-    return NextResponse.json(
-      { reply: "I'm experiencing some technical difficulties. Please contact our team via WhatsApp." },
-      { status: 500 }
-    );
+    console.error("Gemini API Error, falling back to Groq:", error);
+    
+    try {
+      if (!process.env.GROQ_API_KEY) throw new Error("No GROQ_API_KEY available for fallback");
+      
+      // Format messages for OpenAI/Groq compatible format
+      const groqMessages = [
+        { role: "system", content: systemInstruction },
+        ...messages.map(m => ({ 
+          role: m.role === 'user' ? 'user' : 'assistant', 
+          content: m.content 
+        }))
+      ];
+
+      const groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "llama-3.3-70b-versatile",
+          messages: groqMessages,
+          temperature: 0.7
+        })
+      });
+
+      if (!groqRes.ok) throw new Error("Groq API returned an error");
+      
+      const groqData = await groqRes.json();
+      return NextResponse.json({ reply: groqData.choices[0].message.content });
+      
+    } catch (groqError) {
+      console.error("Groq Fallback Error:", groqError);
+      return NextResponse.json(
+        { reply: "I'm experiencing some technical difficulties. Please contact our team via WhatsApp." },
+        { status: 500 }
+      );
+    }
   }
 }
