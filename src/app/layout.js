@@ -1,4 +1,5 @@
 import { Inter, Space_Grotesk } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Preloader from "@/components/Preloader";
 import WebVitalsReporter from "@/components/WebVitalsReporter";
 import ParticleField from "@/components/ParticleField";
@@ -107,6 +108,7 @@ export default function RootLayout({ children }) {
         )}
 
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
